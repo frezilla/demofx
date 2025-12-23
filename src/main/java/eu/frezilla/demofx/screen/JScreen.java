@@ -14,7 +14,11 @@ public final class JScreen extends JComponent {
     public JScreen(Size size) {
         this.size = size;
         setPreferredSize(new Dimension(size.getWidth(), size.getHeight()));
+        setIgnoreRepaint(true);
+        
+        
         image = createImage(size);
+        image.getRaster();
     }
     
     private BufferedImage createImage(Size size) {

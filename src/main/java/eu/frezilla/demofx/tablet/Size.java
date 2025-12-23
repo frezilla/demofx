@@ -1,5 +1,7 @@
 package eu.frezilla.demofx.tablet;
 
+import java.awt.Dimension;
+
 public final class Size {
     
     private final int height;
@@ -50,6 +52,10 @@ public final class Size {
         hash = 53 * hash + this.height;
         hash = 53 * hash + this.width;
         return hash;
+    }
+    
+    public Dimension toDimension() {
+        return new Dimension(width, height);
     }
 
     @Override

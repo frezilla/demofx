@@ -14,10 +14,9 @@ public abstract class AbstractFx implements KeyListener {
     
     protected AbstractFx(String title, int refreshRate, Size size) {
         if (refreshRate <= 0) throw new IllegalArgumentException("The refresh rate must be strictly positive.");
-        this.delay = (long) (1 / refreshRate);
+        this.delay = (long) ((1.0 / refreshRate) * 1000);
         this.refreshRate = refreshRate;
         this.tablet = new MagicTablet(title, size);
-        this.tablet.show();
     }
     
     private void pause(long time) {
@@ -34,11 +33,15 @@ public abstract class AbstractFx implements KeyListener {
         return refreshRate;
     }
     
+    protected final MagicTablet getTablet() {
+        return tablet;
+    }
+    
     private void run() {
         while (isRunning) {
             long initialTime = System.currentTimeMillis();
             update();
-            refresh();
+            tablet.draw();
             long finalTime = System.currentTimeMillis();
             pause(delay - (finalTime - initialTime));
         }
@@ -46,12 +49,10 @@ public abstract class AbstractFx implements KeyListener {
     
     protected abstract void update();
     
-    protected final void refresh() {
-        tablet.refresh();
-        
-    }
-    
     public final synchronized void start() {
+        if (!tablet.isVisible()) {
+            tablet.show();
+        }
         isRunning = true;
         run();
     }

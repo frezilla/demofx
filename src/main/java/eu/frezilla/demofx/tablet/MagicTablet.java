@@ -1,60 +1,50 @@
 package eu.frezilla.demofx.tablet;
 
-import eu.frezilla.demofx.screen.JScreen;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.swing.JFrame;
 
 public final class MagicTablet {
     
-    private final JFrame frame;
-    private final JScreen screen;
-    private final List<Shape> shapes;
+    private Color backgroundColor;
+    private final MyJFrame frame;
+    private final List<AbstractShape> shapes;
     private final Size size;
     
     public MagicTablet(String title, Size size) {
         this.size = Objects.requireNonNull(size);
-        shapes = new LinkedList<>();
-        frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        screen = new JScreen(size);
-        frame.getContentPane().add(screen);
+        this.backgroundColor = Color.RED;
+        this.frame = new MyJFrame(title, this);
+        this.frame.setContentPaneSize(size);
+        this.shapes = new LinkedList<>();
     }
     
-    public void addShape(Shape shape) {
+    public void addShape(AbstractShape shape) {
         Objects.requireNonNull(shape);
-        shape.setTablet(this);
+        shape.setTabletSize(size);
         shapes.addLast(shape);
     }
     
-    public void addShapes(Shape...shape) {
+    public void addShapes(AbstractShape...shape) {
         Stream.of(shape).forEach(s -> addShape(s));
     }
     
     public void clear() {
-        List<Shape> list = shapes.stream().filter(s -> s.cacheInMemory()).collect(Collectors.toList());
-        shapes.clear();
-        shapes.addAll(list);
-    }
-    
-    public void clearAll() {
         shapes.clear();
     }
     
     public void draw() {
-        shapes.forEach(s -> s.draw());
+        frame.repaint();
     }
     
-    protected final JScreen getScreen() {
-        return screen;
-    }
-    
-    public Size getSize() {
+    public Size getContentSize() {
         return size;
+    }
+    
+    List<AbstractShape> getShapes() {
+        return shapes;
     }
     
     public void hide() {
@@ -64,10 +54,13 @@ public final class MagicTablet {
     public boolean isVisible() {
         return frame.isVisible();
     }
+
+    public final Color getBackgroundColor() {
+        return backgroundColor;
+    }
     
-    public void refresh() {
-        draw();
-        clear();
+    public void setBackgroundColor(Color color) {
+        backgroundColor = Objects.requireNonNull(color);
     }
     
     public void show() {
