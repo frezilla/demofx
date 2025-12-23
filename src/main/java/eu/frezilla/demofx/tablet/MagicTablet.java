@@ -1,10 +1,10 @@
 package eu.frezilla.demofx.tablet;
 
 import eu.frezilla.demofx.screen.JScreen;
-import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import javax.swing.JFrame;
 
@@ -35,6 +35,12 @@ public final class MagicTablet {
     }
     
     public void clear() {
+        List<Shape> list = shapes.stream().filter(s -> !s.cacheInMemory()).collect(Collectors.toList());
+        shapes.clear();
+        shapes.addAll(list);
+    }
+    
+    public void clearAll() {
         shapes.clear();
     }
     
@@ -52,6 +58,10 @@ public final class MagicTablet {
     
     public void hide() {
         frame.setVisible(false);
+    }
+    
+    public boolean isVisible() {
+        return frame.isVisible();
     }
     
     public void refresh() {
