@@ -22,8 +22,6 @@ public final class MagicTablet {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         screen = new JScreen(size);
         frame.getContentPane().add(screen);
-        frame.pack();
-        frame.setVisible(true);
     }
     
     public void addShape(Shape shape) {
@@ -52,8 +50,17 @@ public final class MagicTablet {
         return size;
     }
     
+    public void hide() {
+        frame.setVisible(false);
+    }
+    
     public void refresh() {
         draw();
         clear();
+    }
+    
+    public void show() {
+        frame.pack();
+        frame.setVisible(true);
     }
 }
