@@ -20,6 +20,7 @@ public final class MagicTablet {
         shapes = new LinkedList<>();
         frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
         screen = new JScreen(size);
         frame.getContentPane().add(screen);
     }
