@@ -36,7 +36,7 @@ public final class MagicTablet {
     }
     
     public void clear() {
-        List<Shape> list = shapes.stream().filter(s -> !s.cacheInMemory()).collect(Collectors.toList());
+        List<Shape> list = shapes.stream().filter(s -> s.cacheInMemory()).collect(Collectors.toList());
         shapes.clear();
         shapes.addAll(list);
     }
