@@ -8,16 +8,15 @@ import java.util.stream.Stream;
 
 public final class MagicTablet {
     
-    private Color backgroundColor;
     private final MyJFrame frame;
     private final List<AbstractShape> shapes;
     private final Size size;
     
     public MagicTablet(String title, Size size) {
         this.size = Objects.requireNonNull(size);
-        this.backgroundColor = Color.RED;
         this.frame = new MyJFrame(title, this);
         this.frame.setContentPaneSize(size);
+        this.frame.setBackground(Color.BLACK);
         this.shapes = new LinkedList<>();
     }
     
@@ -56,11 +55,11 @@ public final class MagicTablet {
     }
 
     public final Color getBackgroundColor() {
-        return backgroundColor;
+        return frame.getBackground();
     }
     
     public void setBackgroundColor(Color color) {
-        backgroundColor = Objects.requireNonNull(color);
+        frame.setBackground(color);
     }
     
     public void show() {
