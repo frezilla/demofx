@@ -14,7 +14,7 @@ import java.util.Objects;
  * </ul>
  *
  * <p>
- * Une {@code Configuration} est immuable et est créée via l'utilisation d'un
+ * Une {@code Configuration} est immuable; elle est créée via l'utilisation d'un
  * {@code Builder} créé par l'appel à la méthode
  * {@link Configuration#getBuilder()}.
  *
