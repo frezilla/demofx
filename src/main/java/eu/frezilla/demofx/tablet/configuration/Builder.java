@@ -1,15 +1,16 @@
 package eu.frezilla.demofx.tablet.configuration;
 
 /**
- * La classe {@code Builder} permet de créer une instance de la classe 
+ * La classe {@code Builder} permet de créer une instance de la classe
  * {@Configuration}.
  *
- * <p>Les valeurs par défaut sont les suivantes :
+ * <p>
+ * Les valeurs par défaut sont les suivantes :
  * <ul>
  * <li>Taille : {@link Sizes#HIGH}</li>
  * <li>Titre : chaine vide</li>
  * </ul>
- * 
+ *
  * @see Configuration
  * @see Sizes
  */
