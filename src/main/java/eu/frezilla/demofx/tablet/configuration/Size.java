@@ -1,5 +1,7 @@
 package eu.frezilla.demofx.tablet.configuration;
 
+import java.awt.Dimension;
+
 /**
  * La classe {@code Size} définit une taille largeur X hauteur.
  *
@@ -72,6 +74,16 @@ public final class Size {
         hash = 53 * hash + this.height;
         hash = 53 * hash + this.width;
         return hash;
+    }
+    
+    /**
+     * Retourne une nouvelle {@code Dimension} à partir de l'objet courant.
+     * 
+     * @return Dimension
+     * @see Dimension
+     */
+    public Dimension toDimension() {
+        return new Dimension(width, height);
     }
 
     @Override
