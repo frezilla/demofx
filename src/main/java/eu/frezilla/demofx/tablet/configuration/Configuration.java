@@ -27,7 +27,7 @@ public final class Configuration {
 
     Configuration(Size size, String title) {
         this.size = Objects.requireNonNull(size, "la taille n'est pas correctement définie");
-        this.title = Objects.requireNonNull(title, "Le titre n'est pas correctement définie");
+        this.title = Objects.requireNonNull(title, "Le titre n'est pas correctement défini");
     }
 
     /**
