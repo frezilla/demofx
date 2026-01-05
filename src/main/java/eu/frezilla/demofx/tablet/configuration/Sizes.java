@@ -1,5 +1,10 @@
 package eu.frezilla.demofx.tablet.configuration;
 
+/**
+ * Enumération de {@code Size}.
+ * 
+ * @see Size
+ */
 public enum Sizes {
     LOW(new Size(320, 200)),
     MEDIUM(new Size(640, 480)),
