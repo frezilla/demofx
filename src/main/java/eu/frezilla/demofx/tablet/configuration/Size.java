@@ -1,20 +1,31 @@
 package eu.frezilla.demofx.tablet.configuration;
 
+/**
+ * La classe {@code Size} définit une taille largeur X hauteur.
+ *
+ * <p>
+ * Les valeurs de la hauteur et de la largeur sont des entiers positifs et ne
+ * sont plus modifiables.
+ */
 public final class Size {
 
     private final int height;
     private final int width;
 
     /**
-     * Constructeur de la classe. La largeur et la hauteur doivent être 
-     * positifs
+     * Constructeur de la classe. La largeur et la hauteur doivent être positifs
      * .
+     *
      * @param width Largeur
      * @param height Hauteur
      */
     public Size(int width, int height) {
-        if (width <= 0) throw new IllegalArgumentException();
-        if (height <= 0) throw new IllegalArgumentException();
+        if (width <= 0) {
+            throw new IllegalArgumentException();
+        }
+        if (height <= 0) {
+            throw new IllegalArgumentException();
+        }
         this.height = height;
         this.width = width;
     }
