@@ -13,7 +13,12 @@ public final class Tablet {
 
     public Tablet(Configuration configuration) {
         this.configuration = Objects.requireNonNull(configuration, "La configuration n'est pas correctement définie");
-        this.display = new Display();
+        this.display = 
+                new Display(
+                        this.configuration.getSize().getWidth(),
+                        this.configuration.getSize().getHeight(),
+                        this.configuration.getImageType()
+                );
         this.frame = new JFrame(this.configuration.getTitle());
         
         this.display.setPreferredSize(this.configuration.getSize().toDimension());
