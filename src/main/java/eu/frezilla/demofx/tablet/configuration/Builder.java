@@ -7,6 +7,7 @@ package eu.frezilla.demofx.tablet.configuration;
  * <p>
  * Les valeurs par défaut sont les suivantes :
  * <ul>
+ * <li>Type de l'image : {@link ImageType#TYPE_INT_RGB}</li>
  * <li>Taille : {@link Sizes#HIGH}</li>
  * <li>Titre : chaine vide</li>
  * </ul>
@@ -16,10 +17,12 @@ package eu.frezilla.demofx.tablet.configuration;
  */
 public final class Builder {
 
+    private ImageType imageType;
     private Size size;
     private String title;
 
     Builder() {
+        imageType = ImageType.TYPE_INT_RGB;
         size = Sizes.HIGH.getSize();
         title = "";
     }
@@ -31,7 +34,19 @@ public final class Builder {
      * @see Configuration
      */
     public Configuration build() {
-        return new Configuration(size, title);
+        return new Configuration(imageType, size, title);
+    }
+    
+    /**
+     * Définit le type de l'image.
+     * 
+     * @param imageType Type de l'image
+     * @return {@code Builder} courant
+     * @see ImageType
+     */
+    public Builder ImageType(ImageType imageType) {
+        this.imageType = imageType;
+        return this;
     }
 
     /**

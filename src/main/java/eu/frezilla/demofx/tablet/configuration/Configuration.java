@@ -9,6 +9,7 @@ import java.util.Objects;
  * <p>
  * Les paramètres de la {@code Configuration} sont les suivants :
  * <ul>
+ * <li>Le type de l'image (valeur non null)</li>
  * <li>La taille (valeur non nulle)</li>
  * <li>Le titre (valeur non nulle)</li>
  * </ul>
@@ -22,10 +23,12 @@ import java.util.Objects;
  */
 public final class Configuration {
 
+    private final ImageType imageType;
     private final Size size;
     private final String title;
 
-    Configuration(Size size, String title) {
+    Configuration(ImageType imageType, Size size, String title) {
+        this.imageType = Objects.requireNonNull(imageType, "Le type de l'image n'est pas correctement défini");
         this.size = Objects.requireNonNull(size, "la taille n'est pas correctement définie");
         this.title = Objects.requireNonNull(title, "Le titre n'est pas correctement défini");
     }
@@ -39,6 +42,16 @@ public final class Configuration {
      */
     public static Builder getBuilder() {
         return new Builder();
+    }
+    
+    /**
+     * Retourne le type de l'image.
+     * 
+     * @return Type de l'image
+     * @see ImageType
+     */
+    public ImageType getImageType() {
+        return imageType;
     }
 
     /**
