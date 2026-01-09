@@ -1,5 +1,6 @@
 package eu.frezilla.demofx.tablet;
 
+import eu.frezilla.demofx.drawing.Drawing;
 import eu.frezilla.demofx.tablet.configuration.Configuration;
 import java.util.Objects;
 import javax.swing.JFrame;
@@ -7,12 +8,14 @@ import javax.swing.WindowConstants;
 
 public final class Tablet {
 
+    private final DrawingBuffer buffer;
     private final Configuration configuration;
     private final Display display;
     private final JFrame frame;
-
+    
     public Tablet(Configuration configuration) {
         this.configuration = Objects.requireNonNull(configuration, "La configuration n'est pas correctement définie");
+        this.buffer = new DrawingBuffer();
         this.display = 
                 new Display(
                         this.configuration.getSize().getWidth(),
@@ -26,6 +29,23 @@ public final class Tablet {
         this.frame.setResizable(false);
         this.frame.add(display);
     }
+    
+    /**
+     * Ajoute un {@code Drawing} au buffer des dessins à afficher à l'écran.
+     * @param drawing
+     */
+    public void add(Drawing drawing) {
+        buffer.add(drawing);
+    }
+    
+    /**
+     * Affiche les dessins du buffer.
+     */
+    public void display() {
+        prepareDisplay();
+        display.repaint();
+        buffer.clear();
+    }
 
     /**
      * Retourne la {@code Configuration} liée à la tablette.
@@ -35,6 +55,13 @@ public final class Tablet {
      */
     public Configuration getConfiguration() {
         return configuration;
+    }
+    
+    private void prepareDisplay() {
+        GContext context = display.getGContext();
+        buffer.toIterable().forEach(d -> {
+            d.draw(context);
+        });
     }
 
     /**
