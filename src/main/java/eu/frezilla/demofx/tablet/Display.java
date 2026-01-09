@@ -14,9 +14,9 @@ final class Display extends JPanel {
     private final int width;
 
     Display(int width, int height, ImageType imageType) {
-        this.height = 0;
+        this.height = height;
         this.imageType = imageType;
-        this.width = 0;
+        this.width = width;
         reset();
     }
     
