@@ -1,6 +1,7 @@
 package eu.frezilla.demofx.tablet;
 
 import eu.frezilla.demofx.tablet.configuration.ImageType;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
@@ -18,6 +19,11 @@ final class Display extends JPanel {
         this.imageType = imageType;
         this.width = width;
         reset();
+    }
+    
+    public void clear() {
+        gContext.getG2d().setBackground(Color.BLACK);
+        gContext.getG2d().clearRect(0, 0, width, height);
     }
     
     /**
@@ -42,5 +48,4 @@ final class Display extends JPanel {
         img = new BufferedImage(width, height, imageType.intValue());
         gContext = new GContext(img.createGraphics(), width, height);
     }
-    
 }
