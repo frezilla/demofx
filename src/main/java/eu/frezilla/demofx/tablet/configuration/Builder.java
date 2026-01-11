@@ -44,7 +44,7 @@ public final class Builder {
      * @return {@code Builder} courant
      * @see ImageType
      */
-    public Builder ImageType(ImageType imageType) {
+    public Builder imageType(ImageType imageType) {
         this.imageType = imageType;
         return this;
     }
