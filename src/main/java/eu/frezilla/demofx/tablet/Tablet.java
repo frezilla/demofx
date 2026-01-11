@@ -71,11 +71,11 @@ public final class Tablet {
      * @param b booléen
      */
     public void setVisible(boolean b) {
-        if (b) {
+        if (b && frame.isVisible()) {
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-        } else {
+        } else if (!b && !frame.isVisible()) {
             frame.setVisible(false);
         }
     }
