@@ -26,8 +26,8 @@ public class Plot extends Drawing {
     @Override
     public void draw(GContext gContext) {
         Graphics2D g = gContext.getG2d();
-        if ((x <= 0 || x >= gContext.getWidth())) return;
-        if ((y <= 0 || y >= gContext.getHeight())) return;
+        if ((x < 0 || x >= gContext.getWidth())) return;
+        if ((y < 0 || y >= gContext.getHeight())) return;
         g.setColor(getColor());
         g.drawLine(x, y, x, y);
     }
