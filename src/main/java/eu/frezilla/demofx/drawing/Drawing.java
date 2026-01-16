@@ -2,26 +2,13 @@ package eu.frezilla.demofx.drawing;
 
 import eu.frezilla.demofx.tablet.GContext;
 import java.awt.Color;
-import java.util.Objects;
 
-public abstract class Drawing  {
+public interface Drawing  {
     
-    private final Color color;
-    private final int zIndex;
-        
-    protected Drawing(Color color, int zIndex) {
-        this.color = Objects.requireNonNull(color);
-        this.zIndex = zIndex;
-    }
+    void draw(GContext gContext);
     
-    public abstract void draw(GContext gContext);
+    default Color getColor() { return Color.BLACK; }
     
-    public final Color getColor() {
-        return color;
-    }
-    
-    public final int getZIndex() {
-        return zIndex;
-    }
+    default int getZIndex() { return 0; }
     
 }
