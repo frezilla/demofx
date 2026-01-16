@@ -22,8 +22,8 @@ public final class Polygon extends SimpleDrawing {
                     new Line(
                             firstPoint.getX(),
                             firstPoint.getY(),
-                            firstPoint.getX(),
-                            firstPoint.getY(),
+                            secondPoint.getX(),
+                            secondPoint.getY(),
                             color,
                             zIndex
                     )
