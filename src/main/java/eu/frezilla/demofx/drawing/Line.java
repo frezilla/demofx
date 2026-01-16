@@ -4,7 +4,7 @@ import eu.frezilla.demofx.tablet.GContext;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-public class Line extends Drawing {
+public final class Line extends SimpleDrawing {
     
     private final int x1;
     private final int y1;
