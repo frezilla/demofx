@@ -30,4 +30,14 @@ public class Triangle implements Drawing {
         polygon.draw(gContext);
     }
     
+    @Override
+    public Color getColor() {
+        return polygon.getColor();
+    }
+    
+    @Override
+    public int getZIndex() {
+        return polygon.getZIndex();
+    }
+    
 }
