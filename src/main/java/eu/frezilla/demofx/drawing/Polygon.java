@@ -2,15 +2,17 @@ package eu.frezilla.demofx.drawing;
 
 import eu.frezilla.demofx.tablet.GContext;
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Polygon extends SimpleDrawing {
+public final class Polygon implements Drawing {
     
     private final List<Line> lines;
     
     private Polygon(List<Point2D> points, Color color, int zIndex) {
-        super(color, zIndex);
         List<Point2D> pointsTmp = new ArrayList<>(points);
         lines = new ArrayList<>(pointsTmp.size());
         Point2D initialPoint = pointsTmp.getFirst();
@@ -49,6 +51,16 @@ public final class Polygon extends SimpleDrawing {
         }
     }
     
+    @Override
+    public Color getColor() {
+        return lines.get(0).getColor();
+    }
+
+    @Override
+    public int getZIndex() {
+        return lines.get(0).getZIndex();
+    }
+    
     public static Polygon of(List<Point2D> points) {
         return of(points, Color.BLACK, 0);
     }
@@ -62,5 +74,17 @@ public final class Polygon extends SimpleDrawing {
         if (points.size() < 3) throw new IllegalArgumentException();
         return new Polygon(points, color, zIndex);
     }
-    
+
+    @Override
+    public Image toImage(GContext gContext) {
+        int height = gContext.getHeight();
+        int width = gContext.getWidth();
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = image.createGraphics();
+        for (Line line : lines) {
+            g.drawImage(line.toImage(gContext), 0, 0, null);
+        }
+        return image;
+    }
+
 }

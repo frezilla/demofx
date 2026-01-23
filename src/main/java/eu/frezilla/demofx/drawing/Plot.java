@@ -3,6 +3,7 @@ package eu.frezilla.demofx.drawing;
 import eu.frezilla.demofx.tablet.GContext;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 
 public final class Plot extends SimpleDrawing {
     
@@ -26,8 +27,13 @@ public final class Plot extends SimpleDrawing {
     @Override
     public void draw(GContext gContext) {
         Graphics2D g = gContext.getG2d();
-        if ((x < 0 || x >= gContext.getWidth())) return;
-        if ((y < 0 || y >= gContext.getHeight())) return;
+        draw(gContext.getWidth(), gContext.getHeight(), g);
+    }
+    
+    @Override
+    void draw(int width, int height, Graphics2D g) {
+        if ((x < 0 || x >= width)) return;
+        if ((y < 0 || y >= height)) return;
         g.setColor(getColor());
         g.drawLine(x, y, x, y);
     }
@@ -39,5 +45,5 @@ public final class Plot extends SimpleDrawing {
     public int getY() {
         return y;
     }
-    
+
 }

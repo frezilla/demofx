@@ -32,6 +32,11 @@ public final class Line extends SimpleDrawing {
         Graphics2D g = gContext.getG2d();
         int height = gContext.getHeight();
         int width = gContext.getWidth();
+        draw(width, height, g);
+    }
+    
+    @Override
+    void draw(int width, int height, Graphics2D g) {
         if ((x1 < 0 && x2 < 0) || (x1 >= width && x2 >= width)) return;
         if ((y1 < 0 && y2 < 0) || (y1 >= height && y2 >= height)) return;
         
@@ -84,5 +89,5 @@ public final class Line extends SimpleDrawing {
 
         return new int[] { finalX, finalY };
     }
-    
+
 }
